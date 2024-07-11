@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         if (PlayerStatus == PlayerStatus.MoveEmpty) {
             SetStatus(PlayerStatus.EmptyIdle);
             playerAnim.IdleEmty();
-        }
+        } 
         else if (PlayerStatus == PlayerStatus.CarryMove) {
             SetStatus(PlayerStatus.CarryIdle);
             playerAnim.CarryIdle();

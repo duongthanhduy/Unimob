@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class PlayerTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    bool stayTomatoTree = false;
+    private TomatoTree currenttomatoTree = null;
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("tomatotree")) {
+            stayTomatoTree = true;
+            TomatoTree tomatoTree = other.GetComponent<TomatoTree>();
+            tomatoTree.ReduceAlltomato();
+            currenttomatoTree = tomatoTree;
+            tomatoTree.SetAutoReduceTomato(true,transform);
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
-        
+        if (other.CompareTag("tomatotree"))
+        {
+            stayTomatoTree = false;
+            TomatoTree tomatoTree = other.GetComponent<TomatoTree>();
+            if (currenttomatoTree && currenttomatoTree == tomatoTree) {
+                currenttomatoTree = null;
+                tomatoTree.SetAutoReduceTomato(false, null);
+            }
+        }
     }
 }
