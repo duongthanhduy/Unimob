@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class PlayerAnim : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private string _move = "IsMove";
+    private string _carryMove = "IsCarryMove";
+    private string _empty = "IsEmpty"; 
+    [SerializeField] Animator anim;
+    public void EmptyMove()
     {
-        
+        anim.SetBool(_move,true);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void IdleEmty() {
+        anim.SetBool(_move, false);
+        anim.SetBool(_empty, true);
+    }
+
+    public void CarryMove() {
+        anim.SetBool(_empty, false);
+    }
+    public void CarryIdle() {
+        anim.SetBool(_carryMove, false);
     }
 }
